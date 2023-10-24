@@ -5,7 +5,6 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3001;
 
-const ACCESS_TOKEN = 2065705510271503;
 const featuredHeroesIds = [70,265,298,491,542,546];
 let heroes = [];
 
