@@ -15,7 +15,7 @@ const fetchSuperHero = async (heroId) => {
 }
 
 app.use(cors({
-    origin: 'http://127.0.0.1'
+    origin: 'https://hero-app-six.vercel.app'
 }));
 
 app.get("/", async ( req, res ) => {
