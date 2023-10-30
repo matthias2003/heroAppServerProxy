@@ -24,8 +24,7 @@ const getTotalHeroInfoById = async (id) => {
 }
 
 app.use(cors({
-    // origin: 'https://hero-app-six.vercel.app'
-    origin: 'http://localhost:3000'
+    origin: 'https://hero-app-six.vercel.app'
 }));
 
 app.get("/", async ( req, res ) => {
