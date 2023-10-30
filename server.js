@@ -14,8 +14,18 @@ const fetchSuperHero = async (heroId) => {
         return { name:powerstats.name, powerstats, imgUrl:image.url, id:powerstats.id };
 }
 
+const searchHeroesByName = async (name) => {
+    return axios.get(`https://superheroapi.com/api/${process.env.ACCESS_TOKEN}/search/${name}`);
+}
+
+const getTotalHeroInfoById = async (id) => {
+    const  data  = await axios.get(`https://superheroapi.com/api/${process.env.ACCESS_TOKEN}/${id}`);
+    return data;
+}
+
 app.use(cors({
-    origin: 'https://hero-app-six.vercel.app'
+    // origin: 'https://hero-app-six.vercel.app'
+    origin: 'http://localhost:3000'
 }));
 
 app.get("/", async ( req, res ) => {
@@ -28,6 +38,19 @@ app.get("/", async ( req, res ) => {
     const dataHeroes = await Promise.all(...[heroes]);
     res.send(dataHeroes);
 })
+
+app.get("/search/:name", async ( req, res ) => {
+    const name = req.params.name
+    const { data } = await searchHeroesByName(name)
+    res.send(data)
+})
+
+app.get("/details/:id", async ( req, res ) => {
+    const id = req.params.id
+    const { data } = await getTotalHeroInfoById(id);
+    res.send(data);
+})
+
 
 app.listen(port, () => {
     console.log("App is listening on port 3001");
